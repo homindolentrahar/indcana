@@ -6,7 +6,7 @@ Boilerplate code and template to build new project in Flutter more fast and easy
 
 | Brick name           | Version               | Description                                         |
 |----------------------|-----------------------|-----------------------------------------------------|
-| [deptflu_core](https://github.com/homindolentrahar/indcana/tree/master/bricks/indcana_core)         | 1.0.0                 | Core project template completed with necessary dependencies, config, and architecture pattern, ready to develop                 |
+| [indcana_core](https://github.com/homindolentrahar/indcana/tree/master/bricks/indcana_core)         | 1.0.0                 | Core project template completed with necessary dependencies, config, and architecture pattern, ready to develop                 |
 
 ## Getting Started 🚀
 
