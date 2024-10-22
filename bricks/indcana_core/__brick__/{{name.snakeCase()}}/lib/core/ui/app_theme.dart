@@ -21,6 +21,10 @@ abstract class AppTheme {
       ),
     ),
     textTheme: const TextTheme(
+      titleSmall: TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.w600,
+      ),
       bodyMedium: TextStyle(
         fontSize: 14,
       ),

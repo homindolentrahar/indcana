@@ -40,6 +40,8 @@ dependencies:
   flutter_bloc: ^8.1.6 # State management
   get_it: ^8.0.0 # Dependency Injection
   shared_preferences: ^2.3.2 # Shared preference to save configuration locally
+  flutter_secure_storage: ^9.2.2 # Save configuration in local securely
+  {{#routing_go_router}}go_router: ^14.3.0 # Routing{{/routing_go_router}}
 
   # UI
   flutter_svg: ^2.0.10+1 # Load SVG files
