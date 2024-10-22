@@ -8,10 +8,13 @@ final injector = GetIt.instance;
 abstract class Injection {
   static Future<void> inject() async {
     // Declare global dependencies here
-    injector.registerSingletonAsync(() => SharedPreferences.getInstance());
+    injector.registerLazySingletonAsync(() => SharedPreferences.getInstance());
     injector.registerLazySingleton(() => const FlutterSecureStorage());
 
     // Global utils
     injector.registerLazySingleton(() => SecureStorageUtil.instance);
+
+    // Global Service
+    injector.registerLazySingletonAsync(() => ApiService.create());
   }
 }
