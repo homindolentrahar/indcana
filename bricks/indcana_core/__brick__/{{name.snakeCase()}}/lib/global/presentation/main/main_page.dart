@@ -12,11 +12,6 @@ class MainPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(AppLocalizations.of(context)?.language ?? ""),
-        titleTextStyle: TextStyle(
-          fontSize: 16,
-          fontWeight: FontWeight.w500,
-          color: Theme.of(context).colorScheme.onSurface,
-        ),
         actions: [
           PopupMenuButton<Locale>(
             initialValue:
