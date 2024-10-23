@@ -1,4 +1,4 @@
-import 'package:apple/core/constant/api_constant.dart';
+import 'package:{{name.snakeCase()}}/core/constant/api_constant.dart';
 import 'package:logger/logger.dart';
 
 class LoggerUtil {
