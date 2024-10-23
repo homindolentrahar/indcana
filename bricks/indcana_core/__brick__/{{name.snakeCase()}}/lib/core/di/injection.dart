@@ -2,6 +2,7 @@ import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:{{name.snakeCase()}}/core/util/secure_storage_util.dart';
+import 'package:{{name.snakeCase()}}/core/api/api_service.dart';
 
 final injector = GetIt.instance;
 
