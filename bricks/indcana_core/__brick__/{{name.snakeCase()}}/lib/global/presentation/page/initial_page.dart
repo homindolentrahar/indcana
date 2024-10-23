@@ -1,24 +1,32 @@
+import 'package:{{name.snakeCase()}}/core/route/routes.dart';
+import 'package:{{name.snakeCase()}}/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 
-class InitialPage extends StatelessWidget {
+class InitialPage extends StatefulWidget {
   const InitialPage({super.key});
+
+  @override
+  State<InitialPage> createState() => _InitialPageState();
+}
+
+class _InitialPageState extends State<InitialPage> {
+  @override
+  void initState() {
+    super.initState();
+
+    Future.delayed(const Duration(milliseconds: 2500), () {
+      context.goNamed(Routes.home);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text(
-              AppLocalizations.of(context)?.name ?? "",
-              style: Theme.of(context).textTheme.titleSmall,
-            ),
-            const SizedBox(height: 32),
-            const CircularProgressIndicator(),
-          ],
+        child: SvgPicture.asset(
+          Assets.icons.appleLogo.path,
         ),
       ),
     );

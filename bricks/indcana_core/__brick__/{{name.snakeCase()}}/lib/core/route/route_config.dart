@@ -9,31 +9,33 @@ abstract class RouteConfig {
   static GoRouter router = GoRouter(
     initialLocation: Routes.initial,
     debugLogDiagnostics: true,
-    redirect: (context, state) {
-      // Used for middleware or guarding the authenticated section of the app
-      // Return a path to redirect if user not authenticated, or null to continue as normal
-
-      return null;
-    },
     routes: [
       GoRoute(
         path: Routes.initial,
         name: Routes.initial,
-        redirect: (context, state) async {
+        builder: (ctx, state) => const InitialPage(),
+      ),
+      ShellRoute(
+        redirect: (ctx, state) async {
+          // Used for middleware or guarding the authenticated section of the app
+          // Return a path to redirect if user not authenticated, or null to continue as normal
+
           final isAuthenticated =
               (await SecureStorageUtil.instance.accessToken) != null;
 
-          if (isAuthenticated) {
-            return Routes.home;
+          if (!isAuthenticated) {
+            return Routes.login;
           }
-          return Routes.login;
+          return null;
         },
-        builder: (ctx, state) => const InitialPage(),
-      ),
-      GoRoute(
-        path: Routes.home,
-        name: Routes.home,
-        builder: (ctx, state) => const MainPage(),
+        builder: (ctx, state, child) => child,
+        routes: [
+          GoRoute(
+            path: Routes.home,
+            name: Routes.home,
+            builder: (ctx, state) => const MainPage(),
+          ),
+        ],
       ),
       GoRoute(
         path: Routes.login,
