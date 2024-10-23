@@ -1,4 +1,4 @@
-# Indcana
+# indcana
 
 Boilerplate code and template to build new project in Flutter more fast and easy
 
@@ -6,7 +6,7 @@ Boilerplate code and template to build new project in Flutter more fast and easy
 
 | Brick name           | Version               | Description                                         |
 |----------------------|-----------------------|-----------------------------------------------------|
-| [deptflu_core](https://github.com/homindolentrahar/indcana/tree/master/bricks/indcana_core)         | 1.0.0                 | Core project template completed with necessary dependencies, config, and architecture pattern, ready to develop                 |
+| [indcana_core](https://github.com/homindolentrahar/indcana/tree/master/bricks/indcana_core)         | 1.0.0                 | Core project template completed with necessary dependencies, config, and architecture pattern, ready to develop                 |
 
 ## Getting Started 🚀
 
@@ -40,10 +40,6 @@ bricks:
   # Uncomment the following line to import the "hello" brick from BrickHub.
   # hello: 0.1.0+1
   # Bricks can also be imported via remote git url.
-  indcana_core:
-    git:
-      url: https://github.com/homindolentrahar/indcana.git
-      path: bricks/indcana_core
 ```
 
 after that run `mason get` to download bricks from the repository.
