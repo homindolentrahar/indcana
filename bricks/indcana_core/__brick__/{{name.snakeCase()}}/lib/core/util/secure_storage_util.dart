@@ -21,9 +21,18 @@ class SecureStorageUtil {
     return _storage.write(key: LocalConstant.accessToken, value: token);
   }
 
+  Future<String?> get userId async {
+    return _storage.read(key: LocalConstant.userId);
+  }
+
+  Future<void> saveUserId(String userId) async {
+    return _storage.write(key: LocalConstant.userId, value: userId);
+  }
+
   Future<void> destroySession() async {
     await Future.wait([
       _storage.delete(key: LocalConstant.accessToken),
+      _storage.delete(key: LocalConstant.userId),
     ]);
   }
 }
