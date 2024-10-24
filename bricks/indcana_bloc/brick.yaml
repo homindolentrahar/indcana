@@ -1,5 +1,5 @@
 name: indcana_bloc
-description: Generate BLoC architecture for your project, complete with event and state classes
+description: Generate BLoC template with both Bloc and Cubit style. Support pagination and state immutability
 
 # The following defines the brick repository url.
 # Uncomment and update the following line before publishing the brick.

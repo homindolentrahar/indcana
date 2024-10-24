@@ -46,7 +46,7 @@ class {{name.pascalCase()}}State extends Equatable {
 
   const {{name.pascalCase()}}State({
     this.status = BaseStatus.init,
-    this.data = [],
+    this.data = const [],
     this.statusCode,
     this.message,
     this.query,
@@ -57,13 +57,13 @@ class {{name.pascalCase()}}State extends Equatable {
 
   {{name.pascalCase()}}State copyWith({
     BaseStatus? status,
-    List<dynamic> data,
+    List<dynamic>? data,
     int? statusCode,
     String? message,
     String? query,
     int? page,
     int? limit,
-    bool hasMoreData = false,
+    bool? hasMoreData,
   }) => {{name.pascalCase()}}State(
     status: status ?? this.status,
     data: data ?? this.data,

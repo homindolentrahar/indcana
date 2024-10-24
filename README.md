@@ -7,6 +7,7 @@ Boilerplate code and template to build new project in Flutter more fast and easy
 | Brick name           | Version               | Description                                         |
 |----------------------|-----------------------|-----------------------------------------------------|
 | [indcana_core](https://github.com/homindolentrahar/indcana/tree/master/bricks/indcana_core)         | 1.0.0                 | Core project template completed with necessary dependencies, config, and architecture pattern, ready to develop                 |
+| [indcana_bloc](https://github.com/homindolentrahar/indcana/tree/master/bricks/indcana_bloc)         | 1.0.0                 | Generate BLoC template with both Bloc and Cubit style. Support pagination and state immutability                 |
 
 ## Getting Started 🚀
 
@@ -28,31 +29,7 @@ brew install mason
 Run `mason init` to initialize mason in the current project directory. This will generate a `mason.yaml` and allow mason to work with bricks scoped locally within the workspace.
 
 ### Install
-
-Head to `mason.yaml`, then add lines to the `bricks` section:
-
-```yaml
-# Register bricks which can be consumed via the Mason CLI.
-# Run "mason get" to install all registered bricks.
-# To learn more, visit https://docs.brickhub.dev.
-bricks:
-  # Bricks can be imported via version constraint from a registry.
-  # Uncomment the following line to import the "hello" brick from BrickHub.
-  # hello: 0.1.0+1
-  # Bricks can also be imported via remote git url.
-  indcana_core:
-    git:
-      url: https://github.com/homindolentrahar/indcana.git
-      path: bricks/indcana_core
-```
-
-after that run `mason get` to download bricks from the repository.
-
-Make sure you're under project's root directory. Then run and fill the rest
-
-```shell
-mason make BRICKS_NAME 
-```
+Go to each package for further instruction of installation
 
 Happy coding! 🥳🎉
 

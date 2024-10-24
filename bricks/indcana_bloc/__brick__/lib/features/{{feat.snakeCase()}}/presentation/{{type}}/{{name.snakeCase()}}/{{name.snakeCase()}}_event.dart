@@ -39,7 +39,7 @@ class Get{{name.pascalCase()}}Event extends {{name.pascalCase()}}Event {
 @freezed
 class {{name.pascalCase()}}Event with _${{name.pascalCase()}}Event {
   const factory {{name.pascalCase()}}Event.Get{{name.pascalCase()}}(
-    {{#pagination}}
+    {const {#pagination}}
     {String? query,
     @Default(1) int page,
     @Default(10) int limit,}

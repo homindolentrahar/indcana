@@ -1,3 +1,6 @@
-# 0.1.0+1
+# 1.0.0
 
-- TODO: Describe initial release.
+-  Creating BLoC template with both Bloc and Cubit style
+-  Support pagination
+-  Immutability support using `equatable` and `freezed`
+-  Integrate pull to refresh and pagination capability
