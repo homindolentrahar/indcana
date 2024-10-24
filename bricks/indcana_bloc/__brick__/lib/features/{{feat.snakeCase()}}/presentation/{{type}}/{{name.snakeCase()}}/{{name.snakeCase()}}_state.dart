@@ -1,5 +1,5 @@
 {{#immutable_equatable}}
-part of '{{name.snakeCase()}}_bloc.dart';
+part of '{{name.snakeCase()}}_{{type}}.dart';
 
 {{^pagination}}
 sealed class {{name.pascalCase()}}State extends Equatable {

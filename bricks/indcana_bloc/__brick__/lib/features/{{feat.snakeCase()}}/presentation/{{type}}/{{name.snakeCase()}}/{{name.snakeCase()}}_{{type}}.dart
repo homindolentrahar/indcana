@@ -2,7 +2,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 {{#pagination}}import '../../../../../core/constant/base_constant.dart';{{/pagination}}
 
-part '{{name.snakeCase()}}_event.dart';
+{{#type_bloc}}part '{{name.snakeCase()}}_event.dart';{{/type_bloc}}
 part '{{name.snakeCase()}}_state.dart';
 
 {{#type_bloc}}
@@ -33,4 +33,35 @@ class {{name.pascalCase()}}Bloc extends Bloc<{{name.pascalCase()}}Event, {{name.
   }
 }
 {{/type_bloc}}
+
+{{#type_cubit}}
+class {{name.pascalCase()}}Cubit extends Cubit<{{name.pascalCase()}}State> {
+  {{name.pascalCase()}}Cubit() : super(
+   {{^pagination}}{{name.pascalCase()}}StateInit(){{/pagination}}
+   {{#pagination}}const {{name.pascalCase()}}State(){{/pagination}}
+  );
+
+  Future<void> loadData() async {
+    try {
+      emit(
+        {{^pagination}}{{name.pascalCase()}}StateLoading(){{/pagination}}
+        {{#pagination}}state.copyWith(status: BaseStatus.loading){{/pagination}}
+      );
+
+      final data = ['User 1', 'User 2', 'User 3'];
+      emit(
+        {{^pagination}}{{name.pascalCase()}}StateSuccess(data){{/pagination}}
+        {{#pagination}}state.copyWith(status: BaseStatus.success, data: data){{/pagination}}
+      );
+    } catch (e) {
+      emit(
+        {{^pagination}}{{name.pascalCase()}}StateError(message: e.toString()){{/pagination}}
+        {{#pagination}}state.copyWith(status: BaseStatus.error, message: e.toString()){{/pagination}}
+      );
+    }
+  }
+}
+{{/type_cubit}}
+
+
 
