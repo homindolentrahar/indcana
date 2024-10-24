@@ -41,7 +41,9 @@ dependencies:
   get_it: ^8.0.0 # Dependency Injection
   shared_preferences: ^2.3.2 # Shared preference to save configuration locally
   flutter_secure_storage: ^9.2.2 # Save configuration in local securely
-  {{#routing_go_router}}go_router: ^14.3.0 # Routing{{/routing_go_router}}
+  {{#routing_go}}go_router: ^14.3.0 # Routing {{/routing_go}}
+  {{#immutable_equatable}}equatable: ^2.0.5 # Immutable capability on class {{/immutable_equatable}}
+  {{#immutable_freezed}}freezed_annotation: ^2.4.4 # Immutable capability on class {{/immutable_freezed}}
 
   # NETWORK
   dio: ^5.7.0 # HTTP Client
@@ -70,6 +72,7 @@ dev_dependencies:
   flutter_gen_runner: any # Generate code for assets for easy access
   flutter_launcher_icons: "^0.14.1" # Generate launcher icons for Android and iOS
   retrofit_generator: any # Generate code for REST Client
+  {{#immutable_freezed}}freezed: any # Generate code for freezed immutability {{/immutable_freezed}}
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
