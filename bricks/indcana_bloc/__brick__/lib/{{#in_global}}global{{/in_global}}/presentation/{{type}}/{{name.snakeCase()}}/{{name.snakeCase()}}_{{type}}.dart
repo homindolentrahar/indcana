@@ -1,9 +1,11 @@
 {{#immutable_equatable}}import 'package:equatable/equatable.dart';{{/immutable_equatable}}
+{{#immutable_freezed}}import 'package:freezed_annotation/freezed_annotation.dart';{{/immutable_freezed}}
 import 'package:flutter_bloc/flutter_bloc.dart';
 {{#pagination}}import '../../../../../core/constant/base_constant.dart';{{/pagination}}
 
 {{#type_bloc}}part '{{name.snakeCase()}}_event.dart';{{/type_bloc}}
 part '{{name.snakeCase()}}_state.dart';
+{{#immutable_freezed}}part '{{name.snakeCase()}}_{{type}}.freezed.dart'{{/immutable_freezed}}
 
 {{#type_bloc}}
 class {{name.pascalCase()}}Bloc extends Bloc<{{name.pascalCase()}}Event, {{name.pascalCase()}}State> {
@@ -11,24 +13,28 @@ class {{name.pascalCase()}}Bloc extends Bloc<{{name.pascalCase()}}Event, {{name.
    {{^pagination}}{{name.pascalCase()}}StateInit(){{/pagination}}
    {{#pagination}}const {{name.pascalCase()}}State(){{/pagination}}
   ) {
-    on<Get{{name.pascalCase()}}Event>((event, emit) async {
-      try {
-        emit(
-          {{^pagination}}{{name.pascalCase()}}StateLoading(){{/pagination}}
-          {{#pagination}}state.copyWith(status: BaseStatus.loading){{/pagination}}
-        );
+    on<{{name.pascalCase()}}Event>((event, emit) {
+      event.map(
+        Get{{name.pascalCase()}}Event: (instance) async {
+          try {
+            emit(
+              {{^pagination}}{{name.pascalCase()}}StateLoading(){{/pagination}}
+              {{#pagination}}state.copyWith(status: BaseStatus.loading){{/pagination}}
+            );
 
-        final data = ['User 1', 'User 2', 'User 3'];
-        emit(
-          {{^pagination}}{{name.pascalCase()}}StateSuccess(data){{/pagination}}
-          {{#pagination}}state.copyWith(status: BaseStatus.success, data: data){{/pagination}}
-        );
-      } catch (e) {
-        emit(
-          {{^pagination}}{{name.pascalCase()}}StateError(message: e.toString()){{/pagination}}
-          {{#pagination}}state.copyWith(status: BaseStatus.error, message: e.toString()){{/pagination}}
-        );
-      }
+          final data = ['User 1', 'User 2', 'User 3'];
+          emit(
+            {{^pagination}}{{name.pascalCase()}}StateSuccess(data){{/pagination}}
+            {{#pagination}}state.copyWith(status: BaseStatus.success, data: data){{/pagination}}
+          );
+        } catch (e) {
+          emit(
+            {{^pagination}}{{name.pascalCase()}}StateError(message: e.toString()){{/pagination}}
+            {{#pagination}}state.copyWith(status: BaseStatus.error, message: e.toString()){{/pagination}}
+          );
+          }
+        }
+      ); 
     });
   }
 }
@@ -62,5 +68,3 @@ class {{name.pascalCase()}}Cubit extends Cubit<{{name.pascalCase()}}State> {
   }
 }
 {{/type_cubit}}
-
-

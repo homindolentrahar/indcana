@@ -1,6 +1,6 @@
-{{#immutable_equatable}}
 part of '{{name.snakeCase()}}_{{type}}.dart';
 
+{{#immutable_equatable}}
 {{^pagination}}
 sealed class {{name.pascalCase()}}State extends Equatable {
   @override
@@ -75,5 +75,31 @@ class {{name.pascalCase()}}State extends Equatable {
   List<Object?> get props => [[query], page, limit];
 }
 {{/pagination}}
-
 {{/immutable_equatable}}
+
+{{#immutable_freezed}}
+@freezed
+class {{name.pascalCase()}}State with _${{name.pascalCase()}}State {
+  {{#pagination}}
+  const factory {{name.pascalCase()}}State({
+    @Default(BaseStatus.init) BaseStatus status,
+    dynamic data,
+    int? statusCode,
+    String? message,
+    String? query,
+    @Default(1) int page,
+    @Default(10) int limit,
+  }) = _{{name.pascalCase()}}State;
+  {{/pagination}}
+
+  
+  {{^pagination}}
+  const factory {{name.pascalCase()}}State({
+    @Default(BaseStatus.init) BaseStatus status,
+    dynamic data,
+    int? statusCode,
+    String? message,
+  }) = _{{name.pascalCase()}}State;
+  {{/pagination}}
+}
+{{/immutable_freezed}}
