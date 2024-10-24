@@ -36,31 +36,34 @@ class {{name.pascalCase()}}StateError extends {{name.pascalCase()}}State {
 {{#pagination}}
 class {{name.pascalCase()}}State extends Equatable {
   final BaseStatus status;
-  final dynamic data;
+  final List<dynamic> data;
   final int? statusCode;
   final String? message;
   final String? query;
   final int page;
   final int limit;
+  final bool hasMoreData;
 
   const {{name.pascalCase()}}State({
-    this.data,
+    this.status = BaseStatus.init,
+    this.data = const [],
     this.statusCode,
     this.message,
-    this.status = BaseStatus.init,
     this.query,
     this.page = 1,
     this.limit = 10,
+    this.hasMoreData = false,
   });
 
   {{name.pascalCase()}}State copyWith({
     BaseStatus? status,
-    dynamic data,
+    List<dynamic>? data,
     int? statusCode,
     String? message,
     String? query,
     int? page,
     int? limit,
+    bool? hasMoreData,
   }) => {{name.pascalCase()}}State(
     status: status ?? this.status,
     data: data ?? this.data,
@@ -69,10 +72,11 @@ class {{name.pascalCase()}}State extends Equatable {
     query: query ?? this.query,
     page: page ?? this.page,
     limit: limit ?? this.limit,
+    hasMoreData: hasMoreData ?? this.hasMoreData
   );
 
   @override
-  List<Object?> get props => [[query], page, limit];
+  List<Object?> get props => [[statusCode, message, query], status, data, page, limit, hasMoreData];
 }
 {{/pagination}}
 {{/immutable_equatable}}
@@ -83,12 +87,13 @@ class {{name.pascalCase()}}State extends Equatable {
 class {{name.pascalCase()}}State with _${{name.pascalCase()}}State {
   const factory {{name.pascalCase()}}State({
     @Default(BaseStatus.init) BaseStatus status,
-    dynamic data,
+    @Default([]) List<dynamic> data,
     int? statusCode,
     String? message,
     String? query,
     @Default(1) int page,
     @Default(10) int limit,
+    @Default(false) bool hasMoreData,
   }) = _{{name.pascalCase()}}State;
 }
 {{/pagination}}

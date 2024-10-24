@@ -1,6 +1,7 @@
 {{#immutable_equatable}}import 'package:equatable/equatable.dart';{{/immutable_equatable}}
 {{#immutable_freezed}}import 'package:freezed_annotation/freezed_annotation.dart';{{/immutable_freezed}}
 import 'package:flutter_bloc/flutter_bloc.dart';
+{{#pagination}}import 'package:pull_to_refresh/pull_to_refresh.dart';{{/pagination}}
 {{#pagination}}import '../../../../../core/constant/base_constant.dart';{{/pagination}}
 
 {{#type_bloc}}part '{{name.snakeCase()}}_event.dart';{{/type_bloc}}
@@ -9,6 +10,8 @@ part '{{name.snakeCase()}}_state.dart';
 
 {{#type_bloc}}
 class {{name.pascalCase()}}Bloc extends Bloc<{{name.pascalCase()}}Event, {{name.pascalCase()}}State> {
+  {{#pagination}}final RefreshController refreshController = RefreshController();{{/pagination}}
+
   {{name.pascalCase()}}Bloc() : super(
    {{^pagination}}
     {{#immutable_equatable}}{{name.pascalCase()}}StateInit(){{/immutable_equatable}}

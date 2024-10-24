@@ -51,6 +51,7 @@ dependencies:
 
   # UI
   flutter_svg: ^2.0.10+1 # Load SVG files
+  pull_to_refresh: ^2.0.0 # Pull to refresh and pagination
 
   # UTILS
   logger: ^2.4.0 # Logger
