@@ -14,10 +14,7 @@ class {{name.pascalCase()}}Bloc extends Bloc<{{name.pascalCase()}}Event, {{name.
     {{#immutable_equatable}}{{name.pascalCase()}}StateInit(){{/immutable_equatable}}
     {{#immutable_freezed}}{{name.pascalCase()}}State.init(){{/immutable_freezed}}
    {{/pagination}}
-   {{#pagination}}
-    {{#immutable_equatable}}const {{name.pascalCase()}}State(){{/immutable_equatable}}
-    {{#immutable_freezed}}{{name.pascalCase()}}State(){{/immutable_freezed}} 
-   {{/pagination}}
+   {{#pagination}}const {{name.pascalCase()}}State(){{/pagination}}
   ) {
     on<{{name.pascalCase()}}Event>((event, emit) {
       event.map(
@@ -65,25 +62,40 @@ class {{name.pascalCase()}}Bloc extends Bloc<{{name.pascalCase()}}Event, {{name.
 {{#type_cubit}}
 class {{name.pascalCase()}}Cubit extends Cubit<{{name.pascalCase()}}State> {
   {{name.pascalCase()}}Cubit() : super(
-   {{^pagination}}{{name.pascalCase()}}StateInit(){{/pagination}}
-   {{#pagination}}const {{name.pascalCase()}}State(){{/pagination}}
+   {{^pagination}}
+    {{#immutable_equatable}}{{name.pascalCase()}}StateInit(){{/immutable_equatable}}
+    {{#immutable_freezed}}{{name.pascalCase()}}State.init(){{/immutable_freezed}}
+   {{/pagination}}
+   {{#pagination}}{{name.pascalCase()}}State(){{/pagination}}
   );
 
   Future<void> loadData() async {
     try {
       emit(
-        {{^pagination}}{{name.pascalCase()}}StateLoading(){{/pagination}}
-        {{#pagination}}state.copyWith(status: BaseStatus.loading){{/pagination}}
+        {{^pagination}}
+          {{#immutable_equatable}}{{name.pascalCase()}}StateLoading(){{/immutable_equatable}}
+          {{#immutable_freezed}}{{name.pascalCase()}}State.loading(){{/immutable_freezed}}
+        {{/pagination}}
+        {{#pagination}}
+          state.copyWith(status: BaseStatus.loading)
+        {{/pagination}}
       );
 
       final data = ['User 1', 'User 2', 'User 3'];
       emit(
-        {{^pagination}}{{name.pascalCase()}}StateSuccess(data){{/pagination}}
+        {{^pagination}}
+          {{#immutable_equatable}}{{name.pascalCase()}}StateSuccess(data){{/immutable_equatable}}
+          {{#immutable_freezed}}{{name.pascalCase()}}State.success(data: data){{/immutable_freezed}}
+        {{/pagination}}
         {{#pagination}}state.copyWith(status: BaseStatus.success, data: data){{/pagination}}
+
       );
     } catch (e) {
       emit(
-        {{^pagination}}{{name.pascalCase()}}StateError(message: e.toString()){{/pagination}}
+        {{^pagination}} 
+          {{#immutable_equatable}}{{name.pascalCase()}}StateError(message: e.toString()){{/immutable_equatable}}
+          {{#immutable_freezed}}{{name.pascalCase()}}State.error(message: e.toString()){{/immutable_freezed}}
+        {{/pagination}}
         {{#pagination}}state.copyWith(status: BaseStatus.error, message: e.toString()){{/pagination}}
       );
     }

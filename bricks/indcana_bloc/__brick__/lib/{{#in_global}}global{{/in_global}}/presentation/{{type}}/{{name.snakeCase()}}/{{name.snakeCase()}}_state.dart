@@ -78,9 +78,9 @@ class {{name.pascalCase()}}State extends Equatable {
 {{/immutable_equatable}}
 
 {{#immutable_freezed}}
+{{#pagination}}
 @freezed
 class {{name.pascalCase()}}State with _${{name.pascalCase()}}State {
-  {{#pagination}}
   const factory {{name.pascalCase()}}State({
     @Default(BaseStatus.init) BaseStatus status,
     dynamic data,
@@ -90,16 +90,20 @@ class {{name.pascalCase()}}State with _${{name.pascalCase()}}State {
     @Default(1) int page,
     @Default(10) int limit,
   }) = _{{name.pascalCase()}}State;
-  {{/pagination}}
-
-  
-  {{^pagination}}
-  const factory {{name.pascalCase()}}State({
-    @Default(BaseStatus.init) BaseStatus status,
+}
+{{/pagination}}
+{{^pagination}}
+@freezed
+class {{name.pascalCase()}}State with _${{name.pascalCase()}}State {
+   factory {{name.pascalCase()}}State.init() = _Init;
+   factory {{name.pascalCase()}}State.loading() = _Loading;
+   factory {{name.pascalCase()}}State.success({
     dynamic data,
+  }) = _Success;
+  const factory {{name.pascalCase()}}State.error({
     int? statusCode,
     String? message,
-  }) = _{{name.pascalCase()}}State;
-  {{/pagination}}
+  }) = _Error;
 }
+{{/pagination}}
 {{/immutable_freezed}}

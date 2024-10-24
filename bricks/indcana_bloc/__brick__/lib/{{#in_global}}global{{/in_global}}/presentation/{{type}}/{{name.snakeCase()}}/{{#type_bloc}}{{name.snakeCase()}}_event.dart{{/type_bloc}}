@@ -1,7 +1,7 @@
 {{#type_bloc}}
-{{#immutable_equatable}}
 part of '{{name.snakeCase()}}_{{type}}.dart';
 
+{{#immutable_equatable}}
 abstract class {{name.pascalCase()}}Event extends Equatable {
   const {{name.pascalCase()}}Event();
 
