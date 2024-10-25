@@ -9,7 +9,7 @@ void run(HookContext context) {
   final immutable = context.vars['immutable'] as String;
 
   final organizationDomain = organization.split('.').first;
-  final organizationName = organization.split('.').last;
+  final organizationName = organization.split('.')[1];
   final immutableEquatable = immutable == 'equatable';
   final immutableFreezed = immutable == 'freezed';
   final routingGo = routing == 'go_router';
@@ -25,8 +25,4 @@ void run(HookContext context) {
       organization: organization,
       name: name,
     );
-
-  // if (routing == 'go_router') {
-  //   context.vars['routing_go_router'] = true;
-  // }
 }

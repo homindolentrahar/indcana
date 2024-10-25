@@ -2,8 +2,8 @@ import 'dart:io';
 import 'package:mason/mason.dart';
 
 void run(HookContext context) async {
-  final name = context.vars['name'];
-  final workingDirectory = "$name/";
+  final name = context.vars['name'] as String;
+  final workingDirectory = name.snakeCase;
 
   final getDependencies = context.logger.progress("Getting dependencies...");
   await Process.run(
