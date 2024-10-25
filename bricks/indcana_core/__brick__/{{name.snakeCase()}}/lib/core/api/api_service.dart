@@ -1,10 +1,11 @@
+import 'package:dio/dio.dart';
+import 'package:retrofit/retrofit.dart';
 import 'package:{{name.snakeCase()}}/core/api/api_dio.dart';
 import 'package:{{name.snakeCase()}}/core/api/response/base_list_respones.dart';
 import 'package:{{name.snakeCase()}}/core/api/response/base_respone.dart';
 import 'package:{{name.snakeCase()}}/core/di/injection.dart';
 import 'package:{{name.snakeCase()}}/core/util/secure_storage_util.dart';
-import 'package:dio/dio.dart';
-import 'package:retrofit/retrofit.dart';
+import 'package:{{name.snakeCase()}}/features/users/data/dto/user_dto.dart';
 
 part 'api_service.g.dart';
 
@@ -41,8 +42,11 @@ abstract class ApiService {
   Future<BaseResponse> login(@Body() Map<String, dynamic> json);
 
   @GET("/users")
-  Future<BaseListResponse<String>> getUsers({@Query('page') int page = 1});
+  Future<BaseListResponse<UserDto>> getUsers({
+    @Query('page') int page = 1,
+    @Query('per_page') int limit = 10,
+  });
 
   @GET("/users/{id}")
-  Future<BaseResponse> getUserById({@Path('id') required int id});
+  Future<BaseResponse<UserDto>> getUserById({@Path('id') required int id});
 }

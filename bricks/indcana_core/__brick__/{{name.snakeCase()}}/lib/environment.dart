@@ -31,10 +31,11 @@ class Environment {
   static String get appName => _flavor.name;
 
   /// Change [appBaseUrl] with your actual base url for API Integration
+  /// For this example, we use reqres.in as the base url
   static String get appBaseUrl {
     switch (_flavor) {
       case EnvFlavor.dev:
-        return "https://dev.baseurl.com/api/v1";
+        return "https://reqres.in/api";
       case EnvFlavor.staging:
         return "https://staging.baseurl.com/api/v1";
       case EnvFlavor.prod:

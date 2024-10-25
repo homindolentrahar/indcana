@@ -38,13 +38,16 @@ class Get{{name.pascalCase()}}Event extends {{name.pascalCase()}}Event {
 {{#immutable_freezed}}
 @freezed
 class {{name.pascalCase()}}Event with _${{name.pascalCase()}}Event {
+  {{#pagination}}
   const factory {{name.pascalCase()}}Event.Get{{name.pascalCase()}}(
-    {const {#pagination}}
     {String? query,
     @Default(1) int page,
     @Default(10) int limit,}
-    {{/pagination}}
   ) = _Get{{name.pascalCase()}};
+  {{/pagination}}
+  {{^pagination}}
+  const factory {{name.pascalCase()}}Event.Get{{name.pascalCase()}}() = _Get{{name.pascalCase()}};
+  {{/pagination}}
 }
 {{/immutable_freezed}}
 
