@@ -1,4 +1,4 @@
-# Indcana
+# indcana
 
 Boilerplate code and template to build new project in Flutter more fast and easy
 
