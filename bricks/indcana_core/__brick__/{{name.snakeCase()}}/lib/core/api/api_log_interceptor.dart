@@ -44,6 +44,17 @@ class ApiLogInterceptor extends InterceptorsWrapper {
     data['status_code'] = response.statusCode;
     data['message'] = response.statusMessage;
 
+    /// Alter this part to match your API response to defined schema
+    /// In this example, we alter response from [www.reqres.in] to match our defined schema
+    if (data['data'] is List<dynamic>) {
+      data['pagination'] = {
+        'page': data['page'],
+        'per_page': data['per_page'],
+        'total': data['total'],
+        'total_page': data['total_pages'],
+      };
+    }
+
     response.data = data;
 
     LoggerUtil.instance().logApi(

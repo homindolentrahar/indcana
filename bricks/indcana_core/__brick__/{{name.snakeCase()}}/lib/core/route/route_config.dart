@@ -1,6 +1,8 @@
 import 'package:{{name.snakeCase()}}/core/route/routes.dart';
 import 'package:{{name.snakeCase()}}/core/util/secure_storage_util.dart';
+import 'package:{{name.snakeCase()}}/features/home/presentation/pages/home_page.dart';
 import 'package:{{name.snakeCase()}}/features/login/presentation/page/login_page.dart';
+import 'package:{{name.snakeCase()}}/features/users/presentation/pages/users_page.dart';
 import 'package:{{name.snakeCase()}}/global/presentation/page/initial_page.dart';
 import 'package:{{name.snakeCase()}}/global/presentation/page/main_page.dart';
 import 'package:go_router/go_router.dart';
@@ -30,10 +32,20 @@ abstract class RouteConfig {
         },
         builder: (ctx, state, child) => child,
         routes: [
-          GoRoute(
-            path: Routes.home,
-            name: Routes.home,
-            builder: (ctx, state) => const MainPage(),
+          ShellRoute(
+            builder: (ctx, state, child) => MainPage(child: child),
+            routes: [
+              GoRoute(
+                path: Routes.home,
+                name: Routes.home,
+                builder: (ctx, state) => const HomePage(),
+              ),
+              GoRoute(
+                path: Routes.users,
+                name: Routes.users,
+                builder: (ctx, state) => const UsersPage(),
+              ),
+            ],
           ),
         ],
       ),

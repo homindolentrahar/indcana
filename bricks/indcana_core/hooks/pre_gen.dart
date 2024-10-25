@@ -14,8 +14,8 @@ void run(HookContext context) {
   final immutableFreezed = immutable == 'freezed';
   final routingGo = routing == 'go_router';
 
-  context.vars['organization_domain'] = organizationDomain;
-  context.vars['organization_name'] = organizationName;
+  context.vars['org_domain'] = organizationDomain;
+  context.vars['org_name'] = organizationName;
   context.vars['routing_go'] = routingGo;
   context.vars['immutable_equatable'] = immutableEquatable;
   context.vars['immutable_freezed'] = immutableFreezed;
