@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:{{name.snakeCase()}}/features/users/data/dto/user_dto.dart';
 
 bool typeEqual<L, R>() => L == R;
 
@@ -17,10 +18,9 @@ class ResponseParser<T> extends JsonConverter<T, Object> {
 
     if (typeEqualn<T, dynamic>()) {
       return dynamic as T;
+    } else if (typeEqualn<T, UserDto>()) {
+      return UserDto.fromJson(json) as T;
     }
-    // else if (typeEqualn<T, LoginModel>()) {
-    //   return LoginModel.fromJson(json) as T;
-    // }
 
     throw UnimplementedError("`$T` fromJson factory not implemented");
   }
@@ -29,10 +29,9 @@ class ResponseParser<T> extends JsonConverter<T, Object> {
   Object toJson(T object) {
     if (typeEqualn<T, dynamic>()) {
       return object as Object;
+    } else if (typeEqualn<T, UserDto>()) {
+      return (object as UserDto).toJson() as Object;
     }
-    // else if (typeEqualn<T, LoginModel>()) {
-    //   return (object as LoginModel).toJson() as Object;
-    // }
 
     throw UnimplementedError("`$T` fromJson factory not implemented");
   }
