@@ -26,7 +26,7 @@ class _InitialPageState extends State<InitialPage> {
     return Scaffold(
       body: Center(
         child: SvgPicture.asset(
-          Assets.icons.appleLogo.path,
+          Assets.icons.{{name.camelCase()}}Logo.path,
         ),
       ),
     );
