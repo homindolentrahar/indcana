@@ -55,7 +55,7 @@ vars:
   immutable:
     type: enum
     description: Immutable package to ensure object Immutability
-    default: equatable
+    default: freezed
     prompt: Choose your preferrable immutable package
     values:
       - equatable

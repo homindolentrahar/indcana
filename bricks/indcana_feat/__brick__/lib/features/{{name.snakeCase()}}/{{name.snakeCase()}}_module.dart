@@ -5,8 +5,20 @@ import '../../features/{{name.snakeCase()}}/domain/repository/{{name.snakeCase()
 import '../../features/{{name.snakeCase()}}/data/repository/{{name.snakeCase()}}_repository_impl.dart';
 import '../../features/{{name.snakeCase()}}/domain/usecase/get_{{name.snakeCase()}}_uc.dart';
 
-abstract class {{name.pascalCase()}}Module {
-  static void inject() async {
+class {{name.pascalCase()}}Module {
+  const String scopeName = "{{name.pascalCase()}}Module";
+
+  void dispose() {
+    injector.dropScope(scopeName);
+  }
+
+  void inject() async {
+    if (injector.hasScope(scopeName)) {
+      return;
+    }
+
+    injector.pushNewScope(scopeName: scopeName);
+
     injector.registerLazySingleton<{{name.pascalCase()}}RemoteDataSource>(
       () => {{name.pascalCase()}}RemoteDataSourceImpl(),
     );
